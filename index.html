@@ -9,7 +9,7 @@
             --bg-color: #121212;
             --card-bg: #1e1e1e;
             --text-color: #e0e0e0;
-            --accent-color: #00babc; /* لون 42 التقريبي */
+            --accent-color: #00babc;
             --danger-color: #ff4444;
             --success-color: #00c851;
         }
@@ -226,20 +226,18 @@
 </div>
 
 <script>
-    // عند تحميل الصفحة
     document.addEventListener('DOMContentLoaded', () => {
         const checkboxes = document.querySelectorAll('.norm-check');
         const savedState = JSON.parse(localStorage.getItem('normChecklistState')) || {};
 
         checkboxes.forEach((cb, index) => {
-            // استرجاع الحالة المحفوظة
+
             if (savedState[index]) {
                 cb.checked = true;
                 cb.parentElement.style.textDecoration = "line-through";
                 cb.parentElement.style.opacity = "0.5";
             }
 
-            // إضافة مستمع حدث عند التغيير
             cb.addEventListener('change', () => {
                 updateProgress();
                 saveState();
@@ -256,7 +254,7 @@
         updateProgress();
     });
 
-    // حفظ الحالة في المتصفح
+
     function saveState() {
         const checkboxes = document.querySelectorAll('.norm-check');
         const state = {};
@@ -266,7 +264,7 @@
         localStorage.setItem('normChecklistState', JSON.stringify(state));
     }
 
-    // تحديث شريط التقدم
+
     function updateProgress() {
         const checkboxes = document.querySelectorAll('.norm-check');
         const checkedCount = document.querySelectorAll('.norm-check:checked').length;
@@ -284,9 +282,9 @@
         }
     }
 
-    // زر إعادة الضبط
+
     function resetChecklist() {
-        if(confirm("هل أنت متأكد من إعادة ضبط القائمة؟")) {
+        if(confirm("sure?")) {
             localStorage.removeItem('normChecklistState');
             const checkboxes = document.querySelectorAll('.norm-check');
             checkboxes.forEach(cb => {
